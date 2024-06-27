@@ -1,5 +1,4 @@
 from mteb import MTEB
-from mteb.abstasks.AbsTaskReranking import AbsTaskReranking
 from sentence_transformers import SentenceTransformer
 from mteb import AbsTaskRetrieval
 from datasets import load_dataset, DatasetDict
@@ -30,7 +29,8 @@ class LongDocRetrieval(AbsTaskRetrieval):
             'hf_hub_name':'xxxx',
             'eval_splits':['dev'],
             'type':'retrieval',
-            'category':'s2p'
+            'category':'s2p',
+            'main_score':'ndcg_at_10'
         }
         
     def load_data(self, **kwargs):
@@ -41,8 +41,7 @@ class LongDocRetrieval(AbsTaskRetrieval):
                                                                             self.description['eval_splits'])
         self.data_loaded = True
         
-class Long
 
 model = SentenceTransformer("average_word_embeddings_komninos")
-evaluation = MTEB(tasks=[LongDocReranking()])
+evaluation = MTEB(tasks=[LongDocRetrieval()])
 evaluation.run(model)

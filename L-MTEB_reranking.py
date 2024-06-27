@@ -136,3 +136,14 @@ def evaluate(self, model, split="test", **kwargs):
 
 
 AbsTaskReranking.evaluate = evaluate
+
+class LongDocReranking(AbsTaskReranking):
+    @property
+    def description(self):
+        return {
+            'name':'LongDocReranking',
+            'category':'s2p',
+            'hf_hub_name':'xxxx',
+            'eval_splits':['dev'],
+            'main_score':'map'
+        }
