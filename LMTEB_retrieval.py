@@ -24,6 +24,7 @@ class LongDocRetrieval(AbsTaskRetrieval):
     
     @property
     def description(self):
+        # TODO implement hf name
         return {
             'name':'LongDocRetrieval',
             'hf_hub_name':'xxxx',
@@ -41,7 +42,7 @@ class LongDocRetrieval(AbsTaskRetrieval):
                                                                             self.description['eval_splits'])
         self.data_loaded = True
         
-
-model = SentenceTransformer("average_word_embeddings_komninos")
-evaluation = MTEB(tasks=[LongDocRetrieval()])
-evaluation.run(model)
+if __name__=='__main__':
+    model = SentenceTransformer("xxx")
+    evaluation = MTEB(tasks=[LongDocRetrieval()])
+    evaluation.run(model)

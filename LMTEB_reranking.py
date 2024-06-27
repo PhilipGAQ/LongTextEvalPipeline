@@ -138,6 +138,7 @@ def evaluate(self, model, split="test", **kwargs):
 AbsTaskReranking.evaluate = evaluate
 
 class LongDocReranking(AbsTaskReranking):
+    # TODO implement hf name
     @property
     def description(self):
         return {
