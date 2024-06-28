@@ -5,6 +5,8 @@ import torch
 from tqdm import tqdm
 from transformers import AutoModel, AutoTokenizer, is_torch_npu_available
 
+import corpus_split
+
 
 class FlagDRESModel:
     def __init__(
@@ -14,6 +16,7 @@ class FlagDRESModel:
             normalize_embeddings: bool = True,
             query_instruction_for_retrieval: str = None,
             batch_size: int = 256,
+            split_method: str='chunk'
     ) -> None:
 
         self.tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
@@ -22,6 +25,7 @@ class FlagDRESModel:
         self.normalize_embeddings = normalize_embeddings
         self.pooling_method = pooling_method
         self.batch_size = batch_size
+        self.split_method=split_method
 
         if torch.cuda.is_available():
             self.device = torch.device("cuda")
@@ -58,6 +62,9 @@ class FlagDRESModel:
             input_texts = ['{} {}'.format(doc.get('title', ''), doc['text']).strip() for doc in corpus]
         else:
             input_texts = corpus
+        
+        # TODO Add doc split methods.
+        
         return self.encode(input_texts)
 
 

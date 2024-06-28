@@ -146,5 +146,6 @@ class LongDocReranking(AbsTaskReranking):
             'category':'s2p',
             'hf_hub_name':'xxxx',
             'eval_splits':['dev'],
-            'main_score':'map'
+            'main_score':'map',
+            'type':'Reranking'
         }
